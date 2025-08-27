@@ -9,7 +9,31 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  pantry: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Food',
+    },
+  ],
 });
+
+const foodSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+  unit: {
+    type: String,
+    required: true,
+  },
+});
+
+
+
 
 const User = mongoose.model('User', userSchema);
 
