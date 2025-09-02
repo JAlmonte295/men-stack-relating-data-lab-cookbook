@@ -14,7 +14,7 @@ const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
 
 
-const port = process.env.PORT ? process.env.PORT : '3000';
+const port = process.env.PORT ? process.env.PORT : '4000';
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -27,6 +27,7 @@ mongoose.connection.on('connected', () => {
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 // app.use(morgan('dev'));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -57,8 +58,15 @@ app.get('/vip-lounge', (req, res) => {
   }
 });
 
+//GET
 app.get('/users/:userId/foods', async (req, res) => {
   res.send("This is your pantry!");
+});
+
+app.get('/users/:userId/foods/new', (req, res) => {
+  res.render('new.ejs', {
+    user: req.session.user,
+  } )
 });
 
 
