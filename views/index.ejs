@@ -6,19 +6,10 @@
   <title>Home Page</title>
 </head>
 <body>
-  <%- include('partials/_navbar') %>
-  <h1>Home Page</h1>
   <% if (user) { %>
+    <%- include('partials/_navbar.ejs') %>
     <h1>Welcome to the Pantry Recipes app, <%= user.username %>!</h1>
-    <p>
-      <a href="/users/<%= user._id %>/foods">View my Pantry</a>
-    </p>
-    <p>
-      <a href="/users/<%= user._id %>/foods/new">Add Food</a>
-    </p>
-    <p>
-      <a href="/auth/sign-out">Sign out</a>
-    </p>
+    <p>Use the navigation bar to view your pantry, add food, or see what others are cooking.</p>
   <% } else { %>
     <h1>Welcome to the Pantry Recipes app, guest.</h1>
     <p>
@@ -26,6 +17,5 @@
       <a href="/auth/sign-in">Sign in</a>.
     </p>
   <% } %>
-  <p><a href="/vip-lounge">Get into the VIP Users Only lounge!</a></p>
 </body>
 </html>

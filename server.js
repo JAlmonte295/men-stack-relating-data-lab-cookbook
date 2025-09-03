@@ -39,30 +39,24 @@ app.use(
 );
 
 app.use(passUserToView);
+
+// Public routes
 app.use('/auth', authController);
+
+// index route
+app.get('/', (req, res) => {
+  res.render('index.ejs');
+});
+
+// Protected routes
 app.use(isSignedIn);
 app.use('/users', usersController);
 app.use('/users/:userId/foods', foodController);
 
-
-// index route
-app.get('/', (req, res) => {
-  if  (req.session.user) {
-    res.redirect(`/users/${req.session.user._id}/foods`);
-  } else {
-    res.render('index.ejs', { user: req.session.user });
-  }
-});
-
 // vip route
 app.get('/vip-lounge', (req, res) => {
-  if (req.session.user) {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
-  } else {
-    res.send('Sorry, no guests allowed.');
-  }
+  res.send(`Welcome to the party ${req.session.user.username}.`);
 });
-
 
 
 // port listen
