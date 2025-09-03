@@ -1,22 +1,5 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  pantry: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Food',
-    },
-  ],
-});
-
 const foodSchema = mongoose.Schema({
   name: {
     type: String,
@@ -31,9 +14,17 @@ const foodSchema = mongoose.Schema({
     required: true,
   },
 });
-
-
-
+const userSchema = mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  pantry: [foodSchema],
+});
 
 const User = mongoose.model('User', userSchema);
 

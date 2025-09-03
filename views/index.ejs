@@ -11,6 +11,12 @@
   <% if (user) { %>
     <h1>Welcome to the Pantry Recipes app, <%= user.username %>!</h1>
     <p>
+      <a href="/users/<%= user._id %>/foods">View my Pantry</a>
+    </p>
+    <p>
+      <a href="/users/<%= user._id %>/foods/new">Add Food</a>
+    </p>
+    <p>
       <a href="/auth/sign-out">Sign out</a>
     </p>
   <% } else { %>

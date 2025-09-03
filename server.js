@@ -8,7 +8,9 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const authController = require('./controllers/auth.js');
+const User = require('./models/user.js');
 const foodController = require('./controllers/food.js');
+const usersController = require('./controllers/userController.js');
 
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
@@ -39,14 +41,17 @@ app.use(
 app.use(passUserToView);
 app.use('/auth', authController);
 app.use(isSignedIn);
-app.use('/users/:userId/food', foodController);
+app.use('/users', usersController);
+app.use('/users/:userId/foods', foodController);
 
 
 // index route
 app.get('/', (req, res) => {
-  res.render('index.ejs', {
-    user: req.session.user,
-  });
+  if  (req.session.user) {
+    res.redirect(`/users/${req.session.user._id}/foods`);
+  } else {
+    res.render('index.ejs', { user: req.session.user });
+  }
 });
 
 // vip route
@@ -56,17 +61,6 @@ app.get('/vip-lounge', (req, res) => {
   } else {
     res.send('Sorry, no guests allowed.');
   }
-});
-
-//GET
-app.get('/users/:userId/foods', async (req, res) => {
-  res.send("This is your pantry!");
-});
-
-app.get('/users/:userId/foods/new', (req, res) => {
-  res.render('new.ejs', {
-    user: req.session.user,
-  } )
 });
 
 

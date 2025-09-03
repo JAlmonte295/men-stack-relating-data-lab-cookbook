@@ -8,7 +8,7 @@
     <title>Add Food to Pantry</title>
 </head>
 <body>
-    <%- include('partials/_navbar.ejs') %>
+    <%- include('../partials/_navbar.ejs') %>
     <h1>Add a new food to your pantry</h1>
     <form action="/users/<%= user._id %>/foods" method="POST">
         <label for="name">Food Name:</label>

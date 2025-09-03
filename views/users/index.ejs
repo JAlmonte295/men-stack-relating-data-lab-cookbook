@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookbook Community</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Community</h1>
+    <h2>See what other users have in their pantry!</h2>
+    <ul>
+      <% users.forEach(function(user) { %>
+      <li><a href="/users/<%= user._id %>"><%= user.username %></a></li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
