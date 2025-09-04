@@ -9,10 +9,6 @@ const foodSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  unit: {
-    type: String,
-    required: true,
-  },
 });
 const userSchema = mongoose.Schema({
   username: {

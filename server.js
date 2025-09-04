@@ -10,7 +10,7 @@ const session = require('express-session');
 const authController = require('./controllers/auth.js');
 const User = require('./models/user.js');
 const foodController = require('./controllers/food.js');
-const usersController = require('./controllers/userController.js');
+const usersController = require('./controllers/users.js');
 
 const isSignedIn = require('./middleware/is-signed-in.js');
 const passUserToView = require('./middleware/pass-user-to-view.js');
@@ -30,6 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 // app.use(morgan('dev'));
 
+app.use(express.static('public'));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,

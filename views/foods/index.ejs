@@ -3,29 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+
     <title>My Pantry</title>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1><%= pantryOwner.username %>'s Pantry</h1>
-    <p> Current items in my pantry:</p>
-    <ul>
-      <% if (pantryOwner && pantryOwner.pantry) { pantryOwner.pantry.forEach(function(food) { %>
-        <li>
-          <%= food.name %> - <%= food.quantity %> <%= food.unit %>
-          <% if (user && pantryOwner._id.equals(user._id)) { %>
-            <a href="/users/<%= pantryOwner._id %>/foods/<%= food._id %>/edit">Edit</a>
-            <form
-              action="/users/<%= pantryOwner._id %>/foods/<%= food._id %>?_method=DELETE"
-              method="POST"
-              style="display: inline;"
-            >
-              <button type="submit">Delete</button>
-            </form>
-          <% } %>
-        </li>
-      <% }) } %>
-    </ul>
-
+    <div class="container">
+      <h1><%= pantryOwner.username %>'s Pantry</h1>
+      <ul>
+        <% if (pantryOwner && pantryOwner.pantry && pantryOwner.pantry.length > 0) { pantryOwner.pantry.forEach(function(food) { %>
+          <li>
+            <span><%= food.name %> - Quantity: <%= food.quantity %></span>
+            <div>
+            <% if (user && pantryOwner._id.equals(user._id)) { %>
+              <a href="/users/<%= pantryOwner._id %>/foods/<%= food._id %>/edit">Edit</a>
+              <form action="/users/<%= pantryOwner._id %>/foods/<%= food._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete</button>
+              </form>
+            <% } %>
+            </div>
+          </li>
+        <% }) } else { %>
+          <li>This pantry is empty.</li>
+        <% } %>
+      </ul>
+    </div>
   </body>
 </html>
