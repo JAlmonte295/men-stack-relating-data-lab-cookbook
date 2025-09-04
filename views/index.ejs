@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
-  <title>Home Page</title>
-</head>
-<body>
-  <%- include('partials/_navbar.ejs') %>
-  <div class="container">
+<%- include('./partials/header.ejs', { title: 'Home Page' }) %>
+
   <% if (user) { %>
     <h1>Welcome to the Pantry Recipes app, <%= user.username %>!</h1>
     <p>Use the navigation bar to view your pantry, add food, or see what others are cooking.</p>
@@ -19,6 +10,5 @@
       <a href="/auth/sign-in">Sign In</a> to get started.
     </p>
   <% } %>
-  </div>
-</body>
-</html>
+
+<%- include('./partials/footer.ejs') %>

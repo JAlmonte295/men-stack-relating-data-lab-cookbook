@@ -1,17 +1,5 @@
-<!-- new -->
+<%- include('../partials/header.ejs', { title: 'Add Food to Pantry' }) %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-
-    <title>Add Food to Pantry</title>
-</head>
-<body>
-        <%- include('../partials/_navbar.ejs') %>
-    <div class="container">
     <h1>Add a new food to your pantry</h1>
     <form action="/users/<%= user._id %>/foods" method="POST">
         <label for="name">Food Name:</label>
@@ -20,6 +8,5 @@
         <input type="number" name="quantity" id="quantity" required />
         <button type="submit">Add Food</button>
     </form>
-    </div>
-</body>
-</html>
+
+<%- include('../partials/footer.ejs') %>

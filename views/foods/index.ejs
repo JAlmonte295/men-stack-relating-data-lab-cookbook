@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css">
+<%- include('../partials/header.ejs', { title: `${pantryOwner.username}'s Pantry` }) %>
 
-    <title>My Pantry</title>
-  </head>
-  <body>
-    <%- include('../partials/_navbar.ejs') %>
-    <div class="container">
       <h1><%= pantryOwner.username %>'s Pantry</h1>
       <ul>
         <% if (pantryOwner && pantryOwner.pantry && pantryOwner.pantry.length > 0) { pantryOwner.pantry.forEach(function(food) { %>
@@ -28,6 +18,5 @@
           <li>This pantry is empty.</li>
         <% } %>
       </ul>
-    </div>
-  </body>
-</html>
+
+<%- include('../partials/footer.ejs') %>

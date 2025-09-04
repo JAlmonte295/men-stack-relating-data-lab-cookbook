@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css">
+<%- include('../partials/header.ejs', { title: `Edit ${food.name}` }) %>
 
-    <title>Edit Food in Pantry</title>
-  </head>
-  <body>
-    <div class="container">
-    <%- include('../partials/_navbar.ejs') %>
     <h1>Edit <%= food.name %></h1>
     <form action="/users/<%= user._id %>/foods/<%= food._id %>?_method=PUT" method="POST">
       <label for="name">Food Name:</label>
@@ -18,6 +8,5 @@
       <input type="number" name="quantity" id="quantity" value="<%= food.quantity %>" required />
       <button type="submit">Update Food</button>
     </form>
-    </div>
-  </body>
-</html>
+
+<%- include('../partials/footer.ejs') %>
